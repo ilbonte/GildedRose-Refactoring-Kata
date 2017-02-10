@@ -8,66 +8,32 @@ class GildedRose {
 	}
 
 	public void updateQuality() {
+		BaseItem baseItem = null;
 		for (int i = 0; i < items.length; i++) {
-			updateItem(items[i]);
+			switch (items[i].name) {
+			case "Sulfuras, Hand of Ragnaros":
+				baseItem = new Sulfuras(items[i]);
+				break;
+
+			case "Aged Brie":
+				baseItem = new AgedBrie(items[i]);
+				break;
+
+			case "Backstage passes to a TAFKAL80ETC concert":
+				baseItem = new BackstagePasses(items[i]);
+				break;
+
+			default:
+				baseItem = new Normal(items[i]);
+				break;
+			}
+			
+			baseItem.update();
 		}
 	}
 
-	private void updateItem(Item item) {
+	
 
-		switch (item.name) {
-		case "Sulfuras, Hand of Ragnaros":
 
-			break;
-
-		case "Aged Brie":
-			updateAgedBrie(item);
-			break;
-
-		case "Backstage passes to a TAFKAL80ETC concert":
-			item.sellIn -= 1;
-			updateBackstagePasses(item);
-			break;
-
-		default:
-			item.sellIn -= 1;
-			if (item.quality < 50) {
-				if (item.quality > 0) {
-					item.quality -= 1;
-
-					if (item.sellIn < 0) {
-						item.quality -= 1;
-					}
-				}
-			}
-
-			break;
-		}
-	}
-
-	private void updateBackstagePasses(Item item) {
-		if (item.quality < 50) {
-			if (item.sellIn < 0) {
-				item.quality = 0;
-				return;
-			}
-
-			item.quality += 1;
-
-			if (item.sellIn < 10 && item.quality < 50) {
-				item.quality += 1;
-			}
-
-			if (item.sellIn < 5 && item.quality < 50) {
-				item.quality += 1;
-			}
-		}
-	}
-
-	private void updateAgedBrie(Item item) {
-		item.sellIn -= 1;
-		if (item.quality < 50) {
-			item.quality += 1;
-		}
-	}
+	
 }
