@@ -19,6 +19,32 @@ class GildedRose {
         		if(items[i].name.equals("Sulfuras, Hand of Ragnaros")){
         			return;
         		}
+        		
+        		if(items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")){
+        			items[i].sellIn -= 1;
+        			
+        			if(items[i].sellIn<0){
+        				items[i].quality = 0;
+        				return;
+        			}
+        			
+        
+        		    items[i].quality += 1;
+        			
+        			
+        			if(items[i].sellIn<10){
+        				items[i].quality += 1;
+        			}
+        			
+        			if(items[i].sellIn<5){
+        				items[i].quality += 1;
+        			}
+        			
+        			return ;
+        			
+        			
+        			
+        		}
         	}
         	
         	
