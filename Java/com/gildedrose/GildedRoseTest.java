@@ -144,7 +144,7 @@ public class GildedRoseTest {
 	
 	@Test	
 	public void qualityOfBackstagePassesIsNeverMoreThan50() throws Exception {
-		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(3).withQuality(50).build() }; 
+		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(3).withQuality(49).build() }; 
 		GildedRose app = new GildedRose(items);
 		
 		app.updateQuality();
@@ -165,7 +165,6 @@ public class GildedRoseTest {
 	
 
 	@Test
-	@Ignore
 	public void TestFixture() throws Exception {
 		Item[] items = new Item[] { new Item("+5 Dexterity Vest", 10, 20), //
 				new Item("Aged Brie", 2, 0), //
@@ -176,7 +175,8 @@ public class GildedRoseTest {
 				new Item("Backstage passes to a TAFKAL80ETC concert", 10, 49),
 				new Item("Backstage passes to a TAFKAL80ETC concert", 5, 49),
 				// this conjured item does not work properly yet
-				new Item("Conjured Mana Cake", 3, 6) };
+				new Item("Conjured Mana Cake", 3, 6)
+				};
 
 		Item[] expected = new Item[] { new Item("+5 Dexterity Vest", 9, 19), //
 				new Item("Aged Brie", 1, 1), //
@@ -194,6 +194,9 @@ public class GildedRoseTest {
 		app.updateQuality();
 
 		for (int i = 0; i < items.length; i++) {
+//			System.out.println(expected[i].name + " - "+ app.items[i].name );
+//			System.out.println(expected[i].sellIn + " - "+ app.items[i].sellIn );
+//			System.out.println(expected[i].quality + " - "+ app.items[i].quality );
 			assertEquals(expected[i].sellIn, app.items[i].sellIn);
 			assertEquals(expected[i].quality, app.items[i].quality);
 		}
