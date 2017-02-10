@@ -73,6 +73,16 @@ public class GildedRoseTest {
 	}
 	
 	@Test	
+	public void sellInOfSulfurasNeverChanges() throws Exception {
+		Item[] items = { new ItemBuilder().withName(SULFURAS).withSellIn(10).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(10, app.items[0].sellIn);
+	}
+	
+	@Test	
 	public void backstagePassesIncreasesQualityBy1WhenTheAreMoreThan10DaysLeft() throws Exception {
 		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(15).withQuality(10).build() }; 
 		GildedRose app = new GildedRose(items);
@@ -155,6 +165,7 @@ public class GildedRoseTest {
 	
 
 	@Test
+	@Ignore
 	public void TestFixture() throws Exception {
 		Item[] items = new Item[] { new Item("+5 Dexterity Vest", 10, 20), //
 				new Item("Aged Brie", 2, 0), //
