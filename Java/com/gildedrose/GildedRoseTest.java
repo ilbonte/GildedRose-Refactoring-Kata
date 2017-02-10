@@ -7,6 +7,10 @@ import org.junit.Test;
 
 public class GildedRoseTest {
 	final String NORMAL_ITEM = "Car";
+	final String AGED_BRIE = "Aged Brie";
+	final String SULFURAS ="Sulfuras, Hand of Ragnaros";
+	final String BACKSTAGE_PASSES  = "Backstage passes to a TAFKAL80ETC concert";
+	final String CONJURED ="Conjured Mana Cake";
 
 	@Test
 	public void qualityOfANormalItemDegradesByOneWhenADayPass() {
@@ -37,6 +41,118 @@ public class GildedRoseTest {
 		
 		assertEquals(0, app.items[0].quality);
 	}
+	
+	@Test	
+	public void qualityOfAgedBrieIncreasesTheOlderItGets() throws Exception {
+		Item[] items = { new ItemBuilder().withName(AGED_BRIE).withSellIn(10).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(11, app.items[0].quality);
+	}
+	
+	@Test	
+	public void qualityOfAnItemIsNeverMoreThan50() throws Exception {
+		Item[] items = { new ItemBuilder().withName(AGED_BRIE).withSellIn(10).withQuality(50).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(50, app.items[0].quality);
+	}
+	
+	@Test	
+	public void qualityOfSulfurasNeverChanges() throws Exception {
+		Item[] items = { new ItemBuilder().withName(SULFURAS).withSellIn(10).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(10, app.items[0].quality);
+	}
+	
+	@Test	
+	public void backstagePassesIncreasesQualityBy1WhenTheAreMoreThan10DaysLeft() throws Exception {
+		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(15).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(11, app.items[0].quality);
+	}
+	
+	@Test	
+	public void backstagePassesIncreasesQualityBy2WhenTheAre10DaysLeft() throws Exception {
+		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(10).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(12, app.items[0].quality);
+	}
+	
+	@Test	
+	public void backstagePassesIncreasesQualityBy2WhenTheAreLessThan10DaysLeft() throws Exception {
+		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(9).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(12, app.items[0].quality);
+	}
+	
+	@Test	
+	public void backstagePassesIncreasesQualityBy3WhenTheAre5DaysLeft() throws Exception {
+		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(5).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(13, app.items[0].quality);
+	}
+	
+	@Test	
+	public void backstagePassesIncreasesQualityBy3WhenTheAreLessThan5DaysLeft() throws Exception {
+		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(4).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(13, app.items[0].quality);
+	}
+	
+	@Test	
+	public void backstagePassesQualityDropTo0AfterTheConcert() throws Exception {
+		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(0).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(0, app.items[0].quality);
+	}
+	
+	@Test	
+	public void qualityOfBackstagePassesIsNeverMoreThan50() throws Exception {
+		Item[] items = { new ItemBuilder().withName(BACKSTAGE_PASSES).withSellIn(3).withQuality(50).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(50, app.items[0].quality);
+	}
+	
+	@Test
+	@Ignore("Not yet implemented")
+	public void conjuredItemDegradeInQualityTwiceAsFastAsNormalItems() throws Exception {
+		Item[] items = { new ItemBuilder().withName(CONJURED).withSellIn(10).withQuality(10).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(8, app.items[0].quality);
+	}
+	
 
 	@Test
 	public void TestFixture() throws Exception {
