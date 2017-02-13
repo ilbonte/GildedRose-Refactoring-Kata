@@ -9,22 +9,22 @@ class GildedRose {
 
 	public void updateQuality() {
 		ItemUpdater itemUpdater = null;
-		for (int i = 0; i < items.length; i++) {
-			switch (items[i].name) {
+		for (Item item : items){
+			switch (item.name) {
 			case "Sulfuras, Hand of Ragnaros":
-				itemUpdater = new Sulfuras(items[i]);
+				itemUpdater = new Sulfuras(item);
 				break;
 
 			case "Aged Brie":
-				itemUpdater = new AgedBrie(items[i]);
+				itemUpdater = new AgedBrie(item);
 				break;
 
 			case "Backstage passes to a TAFKAL80ETC concert":
-				itemUpdater = new BackstagePasses(items[i]);
+				itemUpdater = new BackstagePasses(item);
 				break;
 
 			default:
-				itemUpdater = new Normal(items[i]);
+				itemUpdater = new Normal(item);
 				break;
 			}
 			
