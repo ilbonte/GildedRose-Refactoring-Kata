@@ -6,12 +6,12 @@ public abstract class IncreasingQualityItemUpdater extends ItemUpdater{
 		super(item);
 	}
 	
+	abstract void update();
+	
 	public void increaseQualityBy(int amount){
 		if (isItemBelowMaxQuality()) {
 			updateQualityBy(1);
 		}
 	}
-	
-	abstract void update();
 
 }

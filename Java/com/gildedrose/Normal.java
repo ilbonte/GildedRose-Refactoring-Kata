@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Normal extends ItemUpdater {
+public class Normal extends DecreasingQualityItemUpdater {
 
 	public Normal(Item item) {
 		super(item);
@@ -9,16 +9,13 @@ public class Normal extends ItemUpdater {
 	@Override
 	void update() {
 		decrementSellIn();
-		decreaseQuality();
+		
+		decreaseQualityBy(1);
 		if (isSellInDatePassed()) {
-			decreaseQuality();
+			decreaseQualityBy(1);
 		}
 	}
 
-	private void decreaseQuality() {
-		if (item.quality > 0) {
-			updateQualityBy(-1);
-		}
-	}
+	
 
 }
