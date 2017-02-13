@@ -17,7 +17,7 @@ public class Normal extends BaseItem {
 
 	private void decreaseQuality() {
 		if (item.quality > 0) {
-			item.quality -= 1;
+			updateQualityBy(-1);
 		}
 	}
 

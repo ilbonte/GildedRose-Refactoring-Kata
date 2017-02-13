@@ -9,9 +9,9 @@ public class AgedBrie extends BaseItem {
 
 	@Override
 	void update() {
-		item.sellIn -= 1;
-		if (item.quality < 50) {
-			item.quality += 1;
+		decrementSellIn();
+		if (isItemBelowMaxQuality()) {
+			updateQualityBy(1);
 		}
 		
 	}
