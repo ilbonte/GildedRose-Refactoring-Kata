@@ -1,9 +1,6 @@
 package com.gildedrose;
 
-public class BackstagePasses extends BaseItem {
-
-	
-
+public class BackstagePasses extends ItemUpdater {
 
 	public BackstagePasses(Item item) {
 		super(item);
@@ -12,13 +9,13 @@ public class BackstagePasses extends BaseItem {
 	@Override
 	void update() {
 		decrementSellIn();
+
+		if (isSellInDatePassed()) {
+			item.quality = 0;
+			return;
+		}
 		
 		if (isItemBelowMaxQuality()) {
-			if (item.sellIn < 0) {
-				item.quality = 0;
-				return;
-			}
-
 			updateQualityBy(1);
 
 			if (item.sellIn < 10 && isItemBelowMaxQuality()) {
@@ -29,7 +26,7 @@ public class BackstagePasses extends BaseItem {
 				updateQualityBy(1);
 			}
 		}
-		
+
 	}
 
 }

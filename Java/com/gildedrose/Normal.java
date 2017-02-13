@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class Normal extends BaseItem {
+public class Normal extends ItemUpdater {
 
 	public Normal(Item item) {
 		super(item);
@@ -10,7 +10,7 @@ public class Normal extends BaseItem {
 	void update() {
 		decrementSellIn();
 		decreaseQuality();
-		if (item.sellIn < 0) {
+		if (isSellInDatePassed()) {
 			decreaseQuality();
 		}
 	}

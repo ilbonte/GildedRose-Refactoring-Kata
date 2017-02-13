@@ -1,11 +1,11 @@
 package com.gildedrose;
 
-public abstract class BaseItem{
+public abstract class ItemUpdater{
 
 	Item item;
 	private final int MAX_ITEM_QUALITY=50;
 	
-	public BaseItem(Item item){
+	public ItemUpdater(Item item){
 		this.item = item;
 	}
 	
@@ -21,5 +21,9 @@ public abstract class BaseItem{
 	
 	public boolean isItemBelowMaxQuality(){
 		return item.quality < MAX_ITEM_QUALITY;
+	}
+	
+	public boolean isSellInDatePassed(){
+		return item.sellIn < 0;
 	}
 }

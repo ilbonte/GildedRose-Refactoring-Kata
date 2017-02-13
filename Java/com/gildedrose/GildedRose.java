@@ -8,7 +8,7 @@ class GildedRose {
 	}
 
 	public void updateQuality() {
-		BaseItem baseItem = null;
+		ItemUpdater baseItem = null;
 		for (int i = 0; i < items.length; i++) {
 			switch (items[i].name) {
 			case "Sulfuras, Hand of Ragnaros":
