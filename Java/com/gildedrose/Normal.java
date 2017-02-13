@@ -11,6 +11,7 @@ public class Normal extends DecreasingQualityItemUpdater {
 		decrementSellIn();
 		
 		decreaseQualityBy(1);
+		
 		if (isSellInDatePassed()) {
 			decreaseQualityBy(1);
 		}
