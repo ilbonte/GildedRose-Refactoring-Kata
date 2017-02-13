@@ -12,6 +12,7 @@ public class BackstagePasses extends BaseItem {
 	@Override
 	void update() {
 		decrementSellIn();
+		
 		if (item.quality < 50) {
 			if (item.sellIn < 0) {
 				item.quality = 0;
