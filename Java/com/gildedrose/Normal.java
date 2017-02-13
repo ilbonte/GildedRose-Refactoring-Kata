@@ -16,13 +16,16 @@ public class Normal extends BaseItem {
 	void update() {
 		item.sellIn -= 1;
 		if (item.quality < 50) {
-			if (item.quality > 0) {
-				item.quality -= 1;
-
-				if (item.sellIn < 0) {
-					item.quality -= 1;
-				}
+			decreaseQuality();
+			if (item.sellIn < 0) { 
+				decreaseQuality();
 			}
+		}
+	}
+	
+	private void decreaseQuality(){
+		if (item.quality > 0) {
+			item.quality -= 1;
 		}
 	}
 

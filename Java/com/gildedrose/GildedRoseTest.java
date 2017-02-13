@@ -33,6 +33,16 @@ public class GildedRoseTest {
 	}
 	
 	@Test
+	public void qualityOfANoramItemDegradesTwiceAsFastWhenIsExpiredButMinimusIsZero() throws Exception {
+		Item[] items = { new ItemBuilder().withName(NORMAL_ITEM).withSellIn(0).withQuality(1).build() }; 
+		GildedRose app = new GildedRose(items);
+		
+		app.updateQuality();
+		
+		assertEquals(0, app.items[0].quality);
+	}
+	
+	@Test
 	public void qualityOfANoramItemIsNeverNegative() throws Exception {
 		Item[] items = { new ItemBuilder().withName(NORMAL_ITEM).withSellIn(10).withQuality(0).build() }; 
 		GildedRose app = new GildedRose(items);
