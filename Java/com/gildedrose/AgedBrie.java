@@ -2,15 +2,10 @@ package com.gildedrose;
 
 public class AgedBrie extends BaseItem {
 
-	private Item item;
-
-
 
 	public AgedBrie(Item item) {
-		this.item = item;
+		super(item);
 	}
-	
-
 
 	@Override
 	void update() {

@@ -1,12 +1,12 @@
 package com.gildedrose;
 
 public class Sulfuras extends BaseItem {
-	Item item;
-	public Sulfuras(Item item) {
-		this.item = item;
-	}
 	
 
+
+	public Sulfuras(Item item) {
+		super(item);
+	}
 
 	@Override
 	void update() {

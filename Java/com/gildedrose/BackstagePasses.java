@@ -2,19 +2,16 @@ package com.gildedrose;
 
 public class BackstagePasses extends BaseItem {
 
-	private Item item;
-
-
-
-	public BackstagePasses(Item item) {
-		this.item = item;
-	}
 	
 
 
+	public BackstagePasses(Item item) {
+		super(item);
+	}
+
 	@Override
 	void update() {
-		item.sellIn -= 1;
+		decrementSellIn();
 		if (item.quality < 50) {
 			if (item.sellIn < 0) {
 				item.quality = 0;

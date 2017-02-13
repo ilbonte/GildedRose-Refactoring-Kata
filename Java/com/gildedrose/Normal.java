@@ -2,19 +2,17 @@ package com.gildedrose;
 
 public class Normal extends BaseItem {
 
-	private Item item;
-
-
-
-	public Normal(Item item) {
-		this.item = item;
-	}
+	
 	
 
 
+	public Normal(Item item) {
+		super(item);
+	}
+
 	@Override
 	void update() {
-		item.sellIn -= 1;
+		decrementSellIn();
 		if (item.quality < 50) {
 			decreaseQuality();
 			if (item.sellIn < 0) { 
