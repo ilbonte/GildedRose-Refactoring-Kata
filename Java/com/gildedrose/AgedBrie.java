@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class AgedBrie extends ItemUpdater {
+public class AgedBrie extends IncreasingQualityItemUpdater {
 
 
 	public AgedBrie(Item item) {
@@ -10,10 +10,8 @@ public class AgedBrie extends ItemUpdater {
 	@Override
 	void update() {
 		decrementSellIn();
-		if (isItemBelowMaxQuality()) {
-			updateQualityBy(1);
-		}
 		
+		increaseQualityBy(1);
 	}
 
 }

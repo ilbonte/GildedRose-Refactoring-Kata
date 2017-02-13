@@ -1,6 +1,6 @@
 package com.gildedrose;
 
-public class BackstagePasses extends ItemUpdater {
+public class BackstagePasses extends IncreasingQualityItemUpdater {
 
 	public BackstagePasses(Item item) {
 		super(item);
@@ -14,17 +14,15 @@ public class BackstagePasses extends ItemUpdater {
 			item.quality = 0;
 			return;
 		}
-		
-		if (isItemBelowMaxQuality()) {
-			updateQualityBy(1);
 
-			if (item.sellIn < 10 && isItemBelowMaxQuality()) {
-				updateQualityBy(1);
-			}
+		increaseQualityBy(1);
 
-			if (item.sellIn < 5 && isItemBelowMaxQuality()) {
-				updateQualityBy(1);
-			}
+		if (item.sellIn < 10) {
+			increaseQualityBy(1);
+		}
+
+		if (item.sellIn < 5) {
+			increaseQualityBy(1);
 		}
 
 	}
